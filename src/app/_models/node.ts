@@ -6,29 +6,19 @@ export interface IIndexedTreeNode {
 }
 
 export class TreeNode {
-  public readonly id: nodeId;
-  public readonly description: string;
-  public decision: boolean | null;
-  public readonly yesId: nodeId | null;
-  public readonly noId: nodeId | null;
+  public decision?: boolean;
   constructor(
-    id: nodeId,
-    description: string,
-    yesId: nodeId | null,
-    noId: nodeId | null
-  ) {
-    this.id = id;
-    this.description = description;
-    this.decision = null; // <-- must be null on creation. wait for decision from user.
-    this.yesId = yesId;
-    this.noId = noId;
-  }
+    public readonly id: NodeId,
+    public readonly description: string,
+    public readonly yesId?: NodeId,
+    public readonly noId?: NodeId
+  ) {}
 }
 
 /**
  * Possible values for a node id.
  */
-export type nodeId =
+export type NodeId =
   | 'chestPain'
   | 'twaveInversion'
   | 'rateOver100'
