@@ -1,0 +1,51 @@
+<div class="container p-0" *ngIf='!isFinal(currentNode)'>
+  <header class="question row justify-content-center">
+    <h3 class="display-5"> {{currentNode.description}} </h3>
+  </header>
+  <section class="container">
+    <div class="row">
+      <div class="col box">
+        <a href="#" class="yes btn btn-sq-lg btn-danger" (click)="yes()">
+          YES
+        </a>
+      </div>
+      <div class="col box">
+        <a href="#" class="no btn btn-sq-lg btn-success" (click)="no()">
+          NO
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container p-0" *ngIf='isFinal(currentNode)'>
+  <ng-container *ngFor="let item of decisionTree">
+    <ng-container *ngIf="item.index == decisionTree.length - 1">
+      <div class="card">
+        <div class="card-header row justify-content-between mx-0">
+          <strong [style.color]="'red'">
+            {{item.node.description}}
+          </strong>
+          <a href="#" class="btn btn-primary px-3" (click)="reset()"> <i class="fa fa-repeat"></i>
+            reset
+          </a>
+
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">What to do:</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ul class="list-group-flush mt-5">
+  <!-- use ng-container pour séparer le ngFor et le ngIf -->
+  <li class="list-group-item" *ngFor="let item of decisionTree">
+    <ng-container *ngIf="!isFinal(item.node)">
+      {{item.node.description}} : <ng-container *ngIf="item.node.decision === true">YES</ng-container>
+      <ng-container *ngIf="item.node.decision === false">NO</ng-container>
+    </ng-container>
+  </li>
+</ul>

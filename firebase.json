@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/ecg-decision-tree",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
